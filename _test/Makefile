@@ -8,6 +8,10 @@ lab: build
 slv: build
 	source .env/silver && cloudquery sync openstack.yaml --log-level=warn --telemetry-level=none
 
+.PHONY: gld
+gld: build
+	source .env/gold && cloudquery sync openstack.yaml --log-level=warn --telemetry-level=none
+
 .PHONY: build
 build:
 	cd .. && make && cd _test
