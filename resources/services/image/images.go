@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/imageservice/v2/images"
 )
 
-func Images() *schema.Table {
+func Images(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_image_images",
+		Name:     "openstack_image_images_" + installation,
 		Resolver: fetchImages,
 		Transform: transformers.TransformWithStruct(
 			&images.Image{},
@@ -24,10 +24,10 @@ func Images() *schema.Table {
 			transformers.WithSkipFields("Links"),
 		),
 		Relations: []*schema.Table{
-			ImageMembers(),
-			ImageMetadata(),
-			ImageProperties(),
-			ImageTags(),
+			ImageMembers(installation),
+			ImageMetadata(installation),
+			ImageProperties(installation),
+			ImageTags(installation),
 		},
 	}
 }

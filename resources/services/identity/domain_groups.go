@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/groups"
 )
 
-func DomainGroups() *schema.Table {
+func DomainGroups(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_domain_groups",
+		Name:     "openstack_identity_domain_groups_" + installation,
 		Resolver: fetchDomainGroups,
 		Transform: transformers.TransformWithStruct(
 			&groups.Group{},

@@ -13,9 +13,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/imageservice/v2/members"
 )
 
-func ImageMembers() *schema.Table {
+func ImageMembers(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_image_image_members",
+		Name:     "openstack_image_image_members_" + installation,
 		Resolver: fetchImageMembers,
 		Transform: transformers.TransformWithStruct(
 			&Member{},

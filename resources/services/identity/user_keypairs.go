@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/extensions/keypairs"
 )
 
-func UserKeyPairs() *schema.Table {
+func UserKeyPairs(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_user_keypairs",
+		Name:     "openstack_identity_user_keypairs_" + installation,
 		Resolver: fetchUserKeyPairs,
 		Transform: transformers.TransformWithStruct(
 			&keypairs.KeyPair{},

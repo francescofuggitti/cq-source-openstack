@@ -9,9 +9,9 @@ import (
 	"github.com/dihedron/cq-source-openstack/client"
 )
 
-func AttachmentHosts() *schema.Table {
+func AttachmentHosts(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_attachment_hosts",
+		Name:     "openstack_blockstorage_attachment_hosts_" + installation,
 		Resolver: fetchAttachmentHosts,
 		Transform: transformers.TransformWithStruct(
 			&Host{},

@@ -14,9 +14,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/v3/volumes"
 )
 
-func Volumes() *schema.Table {
+func Volumes(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_volumes",
+		Name:     "openstack_blockstorage_volumes_" + installation,
 		Resolver: fetchVolumes,
 		Transform: transformers.TransformWithStruct(
 			&Volume{},
@@ -27,7 +27,7 @@ func Volumes() *schema.Table {
 			transformers.WithSkipFields("Links"),
 		),
 		Relations: []*schema.Table{
-			VolumesBackups(),
+			VolumesBackups(installation),
 		},
 	}
 }

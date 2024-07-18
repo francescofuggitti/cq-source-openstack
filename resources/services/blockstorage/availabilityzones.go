@@ -9,9 +9,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/extensions/availabilityzones"
 )
 
-func AvailabilityZones() *schema.Table {
+func AvailabilityZones(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_availabilityzones",
+		Name:     "openstack_blockstorage_availabilityzones_" + installation,
 		Resolver: fetchAvailabilityZones,
 		Transform: transformers.TransformWithStruct(
 			&availabilityzones.AvailabilityZone{},

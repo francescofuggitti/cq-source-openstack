@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/extensions/hypervisors"
 )
 
-func Hypervisors() *schema.Table {
+func Hypervisors(installationn string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_hypervisors",
+		Name:     "openstack_compute_hypervisors_" + installationn,
 		Resolver: fetchHypervisors,
 		Transform: transformers.TransformWithStruct(
 			&hypervisors.Hypervisor{},

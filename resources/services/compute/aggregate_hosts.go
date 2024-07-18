@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/extensions/aggregates"
 )
 
-func AggregateHosts() *schema.Table {
+func AggregateHosts(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_aggregate_hosts",
+		Name:     "openstack_compute_aggregate_hosts_" + installation,
 		Resolver: fetchAggregateHosts,
 		Transform: transformers.TransformWithStruct(
 			&utils.Single[string]{},

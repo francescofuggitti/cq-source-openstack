@@ -10,9 +10,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/extensions/limits"
 )
 
-func Limits() *schema.Table {
+func Limits(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_limits",
+		Name:     "openstack_blockstorage_limits_" + installation,
 		Resolver: fetchLimits,
 		Transform: transformers.TransformWithStruct(
 			&limits.Limit{},

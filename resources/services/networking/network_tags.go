@@ -11,9 +11,9 @@ import (
 	"github.com/dihedron/cq-source-openstack/client"
 )
 
-func NetworkTags() *schema.Table {
+func NetworkTags(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_networking_network_tags",
+		Name:     "openstack_networking_network_tags_" + installation,
 		Resolver: fetchNetworkTags,
 		Transform: transformers.TransformWithStruct(
 			&utils.Tag{},

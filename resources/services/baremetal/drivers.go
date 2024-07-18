@@ -10,9 +10,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/drivers"
 )
 
-func Drivers() *schema.Table {
+func Drivers(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_baremetal_drivers",
+		Name:     "openstack_baremetal_drivers_" + installation,
 		Resolver: fetchDriver,
 		Transform: transformers.TransformWithStruct(
 			&drivers.Driver{},

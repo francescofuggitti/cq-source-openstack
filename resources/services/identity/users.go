@@ -16,16 +16,16 @@ import (
 	"github.com/gophercloud/gophercloud/pagination"
 )
 
-func Users() *schema.Table {
+func Users(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_users",
+		Name:     "openstack_identity_users_" + installation,
 		Resolver: fetchUsers,
 		Transform: transformers.TransformWithStruct(
 			&User{},
 			transformers.WithSkipFields("Links", "Options"),
 		),
 		Relations: []*schema.Table{
-			UserKeyPairs(),
+			UserKeyPairs(installation),
 		},
 		Columns: []schema.Column{
 			{

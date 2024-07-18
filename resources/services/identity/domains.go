@@ -11,16 +11,16 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/domains"
 )
 
-func Domains() *schema.Table {
+func Domains(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_domains",
+		Name:     "openstack_identity_domains_" + installation,
 		Resolver: fetchDomains,
 		Transform: transformers.TransformWithStruct(
 			&domains.Domain{},
 			transformers.WithSkipFields("Links"),
 		),
 		Relations: []*schema.Table{
-			DomainGroups(),
+			DomainGroups(installation),
 		},
 	}
 }

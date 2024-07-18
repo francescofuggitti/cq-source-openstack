@@ -10,9 +10,9 @@ import (
 	"github.com/dihedron/cq-source-openstack/client"
 )
 
-func InstanceMetadata() *schema.Table {
+func InstanceMetadata(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_instance_metadata",
+		Name:     "openstack_compute_instance_metadata_" + installation,
 		Resolver: fetchInstanceMetadata,
 		Transform: transformers.TransformWithStruct(
 			&utils.Pair[string, string]{},

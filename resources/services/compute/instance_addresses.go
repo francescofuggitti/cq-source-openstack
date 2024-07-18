@@ -10,9 +10,9 @@ import (
 	"github.com/dihedron/cq-source-openstack/client"
 )
 
-func InstanceAddresses() *schema.Table {
+func InstanceAddresses(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_instance_addresses",
+		Name:     "openstack_compute_instance_addresses_" + installation,
 		Resolver: fetchInstanceAddresses,
 		Transform: transformers.TransformWithStruct(
 			&Address{},

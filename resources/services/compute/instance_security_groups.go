@@ -9,9 +9,9 @@ import (
 	"github.com/dihedron/cq-source-openstack/client"
 )
 
-func InstanceSecurityGroups() *schema.Table {
+func InstanceSecurityGroups(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_instance_security_groups",
+		Name:     "openstack_compute_instance_security_groups_" + installation,
 		Resolver: fetchInstanceSecurityGroups,
 		Transform: transformers.TransformWithStruct(
 			&InstanceSecurityGroup{},

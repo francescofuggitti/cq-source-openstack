@@ -10,9 +10,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/allocations"
 )
 
-func Allocations() *schema.Table {
+func Allocations(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_baremetal_allocations",
+		Name:     "openstack_baremetal_allocations_" + installation,
 		Resolver: fetchAllocation,
 		Transform: transformers.TransformWithStruct(
 			&allocations.Allocation{},

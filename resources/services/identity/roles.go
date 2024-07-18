@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/roles"
 )
 
-func Roles() *schema.Table {
+func Roles(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_roles",
+		Name:     "openstack_identity_roles_" + installation,
 		Resolver: fetchRoles,
 		Transform: transformers.TransformWithStruct(
 			&roles.Role{},

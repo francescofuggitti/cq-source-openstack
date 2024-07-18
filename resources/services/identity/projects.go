@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/projects"
 )
 
-func Projects() *schema.Table {
+func Projects(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_projects",
+		Name:     "openstack_identity_projects_" + installation,
 		Resolver: fetchProjects,
 		Transform: transformers.TransformWithStruct(
 			&projects.Project{},
@@ -22,7 +22,7 @@ func Projects() *schema.Table {
 			transformers.WithSkipFields("Links"),
 		),
 		Relations: []*schema.Table{
-			compute.ProjectLimits(),
+			compute.ProjectLimits(installation),
 		},
 		// Columns: []schema.Column{
 		// 	{

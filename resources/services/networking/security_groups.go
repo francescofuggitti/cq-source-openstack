@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/security/groups"
 )
 
-func SecurityGroups() *schema.Table {
+func SecurityGroups(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_networking_security_groups",
+		Name:     "openstack_networking_security_groups_" + installation,
 		Resolver: fetchSecurityGroups,
 		Transform: transformers.TransformWithStruct(
 			&groups.SecGroup{},

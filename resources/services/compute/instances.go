@@ -14,9 +14,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/servers"
 )
 
-func Instances() *schema.Table {
+func Instances(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_instances",
+		Name:     "openstack_compute_instances_" + installation,
 		Resolver: fetchInstances,
 		Transform: transformers.TransformWithStruct(
 			&Instance{},
@@ -25,13 +25,13 @@ func Instances() *schema.Table {
 			transformers.WithSkipFields("Links"),
 		),
 		Relations: []*schema.Table{
-			InstanceAddresses(),
-			InstanceAttachedVolumes(),
-			InstanceFlavors(),
-			InstanceFlavorExtraSpecs(),
-			InstanceMetadata(),
-			InstanceSecurityGroups(),
-			InstanceTags(),
+			InstanceAddresses(installation),
+			InstanceAttachedVolumes(installation),
+			InstanceFlavors(installation),
+			InstanceFlavorExtraSpecs(installation),
+			InstanceMetadata(installation),
+			InstanceSecurityGroups(installation),
+			InstanceTags(installation),
 		},
 		Columns: []schema.Column{
 			{

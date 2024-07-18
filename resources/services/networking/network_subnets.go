@@ -11,9 +11,9 @@ import (
 	"github.com/dihedron/cq-source-openstack/client"
 )
 
-func NetworkSubnets() *schema.Table {
+func NetworkSubnets(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_networking_network_subnets",
+		Name:     "openstack_networking_network_subnets_" + installation,
 		Resolver: fetchNetworkSubnets,
 		Transform: transformers.TransformWithStruct(
 			&utils.Single[string]{},

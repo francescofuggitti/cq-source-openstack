@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/ports"
 )
 
-func Ports() *schema.Table {
+func Ports(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_baremetal_ports",
+		Name:     "openstack_baremetal_ports_" + installation,
 		Resolver: fetchPort,
 		Transform: transformers.TransformWithStruct(
 			&Port{},

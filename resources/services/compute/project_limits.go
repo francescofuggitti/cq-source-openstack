@@ -13,9 +13,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/projects"
 )
 
-func ProjectLimits() *schema.Table {
+func ProjectLimits(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_project_limits",
+		Name:     "openstack_compute_project_limits_" + installation,
 		Resolver: fetchProjectLimits,
 		Transform: transformers.TransformWithStruct(
 			&limits.Absolute{},

@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/imageservice/v2/images"
 )
 
-func ImageProperties() *schema.Table {
+func ImageProperties(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_image_image_properties",
+		Name:     "openstack_image_image_properties_" + installation,
 		Resolver: fetchImageProperties,
 		Transform: transformers.TransformWithStruct(
 			&utils.Pair[string, string]{},

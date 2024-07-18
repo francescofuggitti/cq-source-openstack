@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/imageservice/v2/images"
 )
 
-func ImageTags() *schema.Table {
+func ImageTags(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_image_image_tags",
+		Name:     "openstack_image_image_tags_" + installation,
 		Resolver: fetchImageTags,
 		Transform: transformers.TransformWithStruct(
 			&utils.Tag{},

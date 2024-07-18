@@ -10,9 +10,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/v3/snapshots"
 )
 
-func Snapshots() *schema.Table {
+func Snapshots(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_snapshots",
+		Name:     "openstack_blockstorage_snapshots_" + installation,
 		Resolver: fetchSnapshots,
 		Transform: transformers.TransformWithStruct(
 			&snapshots.Snapshot{},

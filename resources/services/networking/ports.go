@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/ports"
 )
 
-func Ports() *schema.Table {
+func Ports(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_networking_ports",
+		Name:     "openstack_networking_ports_" + installation,
 		Resolver: fetchPorts,
 		Transform: transformers.TransformWithStruct(
 			&ports.Port{},

@@ -13,9 +13,9 @@ import (
 	"github.com/dihedron/cq-source-openstack/client"
 )
 
-func InstanceFlavors() *schema.Table {
+func InstanceFlavors(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_instance_flavors",
+		Name:     "openstack_compute_instance_flavors_" + installation,
 		Resolver: fetchInstanceFlavors,
 		Transform: transformers.TransformWithStruct(
 			&InstanceFlavor{},

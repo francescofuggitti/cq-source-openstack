@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/imageservice/v2/images"
 )
 
-func ImageMetadata() *schema.Table {
+func ImageMetadata(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_image_image_metadata",
+		Name:     "openstack_image_image_metadata_" + installation,
 		Resolver: fetchImageMetadata,
 		Transform: transformers.TransformWithStruct(
 			&utils.Pair[string, string]{},

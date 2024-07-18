@@ -15,9 +15,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/projects"
 )
 
-func Attachments() *schema.Table {
+func Attachments(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_attachments",
+		Name:     "openstack_blockstorage_attachments_" + installation,
 		Resolver: fetchAttachments,
 		Transform: transformers.TransformWithStruct(
 			&Attachment{},
@@ -27,7 +27,7 @@ func Attachments() *schema.Table {
 			transformers.WithSkipFields("Links"),
 		),
 		Relations: []*schema.Table{
-			AttachmentHosts(),
+			AttachmentHosts(installation),
 		},
 		Columns: []schema.Column{
 			{

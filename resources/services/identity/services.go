@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/services"
 )
 
-func Services() *schema.Table {
+func Services(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_services",
+		Name:     "openstack_identity_services_" + installation,
 		Resolver: fetchServices,
 		Transform: transformers.TransformWithStruct(
 			&services.Service{},

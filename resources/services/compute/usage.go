@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/pagination"
 )
 
-func ServerUsage() *schema.Table {
+func ServerUsage(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_serverusage",
+		Name:     "openstack_compute_serverusage_" + installation,
 		Resolver: fetchServerUsage,
 		Transform: transformers.TransformWithStruct(
 			&Usage{},

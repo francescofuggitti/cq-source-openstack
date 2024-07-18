@@ -13,9 +13,9 @@ import (
 	"github.com/gophercloud/gophercloud/pagination"
 )
 
-func FlavorAccesses() *schema.Table {
+func FlavorAccesses(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_flavor_accesses",
+		Name:     "openstack_compute_flavor_accesses_" + installation,
 		Resolver: fetchFlavorAccesses,
 		Transform: transformers.TransformWithStruct(
 			&FlavorAccess{},

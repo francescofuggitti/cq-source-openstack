@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/networks"
 )
 
-func Networks() *schema.Table {
+func Networks(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_networking_networks",
+		Name:     "openstack_networking_networks_" + installation,
 		Resolver: fetchNetworks,
 		Transform: transformers.TransformWithStruct(
 			&Network{},
@@ -24,8 +24,8 @@ func Networks() *schema.Table {
 			transformers.WithSkipFields("Links"),
 		),
 		Relations: []*schema.Table{
-			NetworkSubnets(),
-			NetworkTags(),
+			NetworkSubnets(installation),
+			NetworkTags(installation),
 		},
 	}
 }

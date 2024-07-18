@@ -18,6 +18,7 @@ type Spec struct {
 	ProjectName                *string  `json:"project_name,omitempty" yaml:"project_name,omitempty"`
 	DomainID                   *string  `json:"domain_id,omitempty" yaml:"domain_id,omitempty"`
 	DomainName                 *string  `json:"domain_name,omitempty" yaml:"domain_name,omitempty"`
+	Installation               *string  `json:"installation,omitempty" yaml:"installation,omitempty"`
 	AccessToken                *string  `json:"access_token,omitempty" yaml:"access_token,omitempty"`
 	AppCredentialID            *string  `json:"app_credential_id,omitempty" yaml:"app_credential_id,omitempty"`
 	AppCredentialSecret        *string  `json:"app_credential_secret,omitempty" yaml:"app_credential_secret,omitempty"`

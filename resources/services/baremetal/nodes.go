@@ -10,9 +10,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/nodes"
 )
 
-func Nodes() *schema.Table {
+func Nodes(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_baremetal_nodes",
+		Name:     "openstack_baremetal_nodes_" + installation,
 		Resolver: fetchNode,
 		Transform: transformers.TransformWithStruct(
 			&nodes.Node{},

@@ -12,9 +12,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/projects"
 )
 
-func QuotaSetsUsage() *schema.Table {
+func QuotaSetsUsage(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_quotasets_usage",
+		Name:     "openstack_blockstorage_quotasets_usage_"  + installation,
 		Resolver: fetchQuotaSetsUsage,
 		Transform: transformers.TransformWithStruct(
 			&quotasets.QuotaUsageSet{},

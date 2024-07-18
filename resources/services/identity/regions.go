@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/regions"
 )
 
-func Regions() *schema.Table {
+func Regions(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_regions",
+		Name:     "openstack_identity_regions_" + installation,
 		Resolver: fetchRegions,
 		Transform: transformers.TransformWithStruct(
 			&regions.Region{},

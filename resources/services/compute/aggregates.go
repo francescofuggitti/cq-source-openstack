@@ -10,9 +10,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/extensions/aggregates"
 )
 
-func Aggregates() *schema.Table {
+func Aggregates(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_aggregates",
+		Name:     "openstack_compute_aggregates_" + installation,
 		Resolver: fetchAggregates,
 		Transform: transformers.TransformWithStruct(
 			&aggregates.Aggregate{},
@@ -21,7 +21,7 @@ func Aggregates() *schema.Table {
 			transformers.WithSkipFields("Links"),
 		),
 		Relations: []*schema.Table{
-			AggregateHosts(),
+			AggregateHosts(installation),
 		},
 	}
 }

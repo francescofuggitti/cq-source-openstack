@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/extensions/backups"
 )
 
-func VolumesBackups() *schema.Table {
+func VolumesBackups(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_volumes_backups",
+		Name:     "openstack_blockstorage_volumes_backups_" + installation,
 		Resolver: fetchVolumesBackups,
 		Transform: transformers.TransformWithStruct(
 			&Backup{},

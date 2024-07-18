@@ -10,9 +10,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/v3/qos"
 )
 
-func QoS() *schema.Table {
+func QoS(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_qos",
+		Name:     "openstack_blockstorage_qos_" + installation,
 		Resolver: fetchQoS,
 		Transform: transformers.TransformWithStruct(
 			&qos.QoS{},

@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/security/rules"
 )
 
-func SecurityGroupRules() *schema.Table {
+func SecurityGroupRules(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_networking_security_group_rules",
+		Name:     "openstack_networking_security_group_rules_" + installation,
 		Resolver: fetchSecurityGroupRules,
 		Transform: transformers.TransformWithStruct(
 			&rules.SecGroupRule{},

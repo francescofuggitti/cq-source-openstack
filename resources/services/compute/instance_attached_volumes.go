@@ -10,9 +10,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/servers"
 )
 
-func InstanceAttachedVolumes() *schema.Table {
+func InstanceAttachedVolumes(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_instance_attached_volumes",
+		Name:     "openstack_compute_instance_attached_volumes_" + installation,
 		Resolver: fetchInstanceAttachedVolumes,
 		Transform: transformers.TransformWithStruct(
 			&servers.AttachedVolume{},

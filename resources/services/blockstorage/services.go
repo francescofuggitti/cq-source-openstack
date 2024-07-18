@@ -9,9 +9,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/extensions/services"
 )
 
-func Services() *schema.Table {
+func Services(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_blockstorage_services",
+		Name:     "openstack_blockstorage_services_" + installation,
 		Resolver: fetchServices,
 		Transform: transformers.TransformWithStruct(
 			&services.Service{},

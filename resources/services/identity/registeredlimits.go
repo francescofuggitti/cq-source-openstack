@@ -11,9 +11,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/registeredlimits"
 )
 
-func RegisteredLimits() *schema.Table {
+func RegisteredLimits(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_identity_registeredlimits",
+		Name:     "openstack_identity_registeredlimits_" + installation,
 		Resolver: fetchRegisteredLimits,
 		Transform: transformers.TransformWithStruct(
 			&registeredlimits.RegisteredLimit{},

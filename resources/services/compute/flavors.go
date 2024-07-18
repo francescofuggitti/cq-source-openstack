@@ -14,9 +14,9 @@ import (
 	"github.com/gophercloud/gophercloud/pagination"
 )
 
-func Flavors() *schema.Table {
+func Flavors(installation string) *schema.Table {
 	return &schema.Table{
-		Name:     "openstack_compute_flavors",
+		Name:     "openstack_compute_flavors_" + installation,
 		Resolver: fetchFlavors,
 		Transform: transformers.TransformWithStruct(
 			&Flavor{},
@@ -25,8 +25,8 @@ func Flavors() *schema.Table {
 			transformers.WithSkipFields("Links", "ExtraSpecsRaw", "ExtraSpecsObj", "ExtraSpecsMap"),
 		),
 		Relations: []*schema.Table{
-			FlavorAccesses(),
-			FlavorExtraSpecs(),
+			FlavorAccesses(installation),
+			FlavorExtraSpecs(installation),
 		},
 	}
 }
