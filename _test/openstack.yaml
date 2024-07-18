@@ -1,9 +1,9 @@
 kind: source
 spec:
-  name: openstack_lab
+  name: openstack
   registry: local
-  path: "../dist/linux/amd64/cq-source-openstack"
-  version: v1.0.0
+  path: "../dist/cq-source-openstack_linux_amd64_v1/cq-source-openstack"
+  version: v0.1.0
   tables: ["openstack*"]
   destinations:
     # - sqlite
@@ -15,39 +15,25 @@ spec:
     project_id: ${OPENSTACK_PROJECT_ID}
     project_name: ${OPENSTACK_PROJECT_NAME}
     domain_name: ${OPENSTACK_DOMAIN_NAME}
+    installation: ${OPENSTACK_INSTALLATION}
     app_credential_id: ${OPENSTACK_APP_CREDENTIAL_ID}
     app_credential_secret: ${OPENSTACK_APP_CREDENTIAL_SECRET}
     included_tables: ["openstack*"]
     excluded_tables: ["openstack_baremetal*"]
 # ---
-# kind: source
+# kind: destination
 # spec:
-#   name: gitlab_cloud
-#   path: cloudquery/gitlab
-#   version: v3.0.0
-#   tables: ["*"]
-#   destinations:
-#     - sqlite
-#     - postgresql
+#   name: sqlite
+#   path: cloudquery/sqlite
+#   version: v2.9.4
 #   spec:
-#     access_token: bs2o3H-ukrPQYueqENza
-#     base_url: https://git.cloud.bankit.it/
----
-kind: destination
-spec:
-  name: sqlite
-  path: cloudquery/sqlite
-  version: v2.4.21
-  spec:
-    connection_string: ./${OPENSTACK_INSTALLATION}.sqlite
+#     connection_string: ./${OPENSTACK_INSTALLATION}.sqlite
 ---
 kind: destination
 spec:
   name: postgresql
-  registry: github
+  registry: cloudquery
   path: cloudquery/postgresql
-  version: v7.3.4
+  version: v8.2.6
   spec:
-    connection_string: postgresql://cloudquery:cloudquery@${DB_POSTGRES_URL}:5433/cloudquery?sslmode=disable
-#    connection_string: postgresql://cloudquery:cloudquery@localhost:5432/cloudquery?sslmode=disable
-#    connection_string: postgresql://superset:superset@localhost:15432/superset?sslmode=disable
+    connection_string: postgresql://${DB_POSTGRES_USER}:${DB_POSTGRES_PASSWORD}@${DB_POSTGRES_URL}:5432/cloudquery?sslmode=disable

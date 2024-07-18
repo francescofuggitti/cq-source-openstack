@@ -4,9 +4,9 @@ before:
 builds:
   - flags:
       - -buildmode=exe
-      - -race
+      # - -race
     env:
-      - CGO_ENABLED=1
+      - CGO_ENABLED=0
       - GO111MODULE=on
     ldflags:
       - -s -w -X github.com/dihedron/cq-source-openstack/plugin/plugin.Version={{.Version}}
