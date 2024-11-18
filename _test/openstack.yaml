@@ -6,28 +6,24 @@ spec:
   version: v0.1.0
   tables: ["openstack*"]
   destinations:
-    # - sqlite
+    - sqlite
     - postgresql
   spec:
     endpoint_url: ${OPENSTACK_ENDPOINT_URL}
-    username: ${OPENSTACK_USERNAME}
-    password: ${OPENSTACK_PASSWORD}
-    project_id: ${OPENSTACK_PROJECT_ID}
-    project_name: ${OPENSTACK_PROJECT_NAME}
     domain_name: ${OPENSTACK_DOMAIN_NAME}
     installation: ${OPENSTACK_INSTALLATION}
     app_credential_id: ${OPENSTACK_APP_CREDENTIAL_ID}
     app_credential_secret: ${OPENSTACK_APP_CREDENTIAL_SECRET}
     included_tables: ["openstack*"]
     excluded_tables: ["openstack_baremetal*"]
-# ---
-# kind: destination
-# spec:
-#   name: sqlite
-#   path: cloudquery/sqlite
-#   version: v2.9.4
-#   spec:
-#     connection_string: ./${OPENSTACK_INSTALLATION}.sqlite
+---
+kind: destination
+spec:
+  name: sqlite
+  path: cloudquery/sqlite
+  version: v2.9.4
+  spec:
+    connection_string: ./${OPENSTACK_INSTALLATION}.sqlite
 ---
 kind: destination
 spec:
